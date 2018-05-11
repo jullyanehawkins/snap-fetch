@@ -13,9 +13,41 @@
 			document.getElementById('getData').addEventListener('click', getData);
 
 			function getData(){
-				//code to execute
-			}
 
+			.then((res) => { return res.json() })
+					.then((data) => {
+						let result = '<h2> Users Info </h2>';
+						data.forEach((user) => {
+							result +=
+								`<h4> User ID: ${user.id} </h4>
+                     <ul>
+                       <li> User tittle : ${user.title}</li>
+                       <li> User body : ${user.body} </li>
+                    </ul>
+                     `;
+							document.getElementById('result').innerHTML = result;
+						});
+					})
+
+				//Using ES6 arrow function to output to html
+
+				fetch(‘sampleUsers.json’)
+			.then((res) => return res.json())
+			.then((data) =>{
+					let output = '<h2> Users Info </h2>';
+					data.forEach((user) => {
+						result +=
+							`<ul>
+                       <li> User ID : ${user.id} </li>
+                       <li> User Name : ${user.name}</li>
+                       <li> User Email : ${user.email} </li>
+                    </ul>
+                     `;
+						document.getElementById('result').innerHTML = result;
+					});
+				}).catch((err)=>console.log(err))
+
+			}
 		</script>
 	</body>
 </html>
